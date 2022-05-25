@@ -1,12 +1,12 @@
 # Space Shooter
 
-Additional features to be added include:
+Additional features/fixes to be made include:
 
 **Main Menu**
 - [ ] Explanation menu for points, powerups, controls, etc.
 
 **Single Player**
-- [ ] If two power ups of the same type are picked up before the duration of the first one ends, extend the duration.
+- [ ] If two power ups of the same type are picked up before the duration of the first one ends, extend the duration
 
 **CO OP**
 - [ ] Pause not working
