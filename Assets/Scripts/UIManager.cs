@@ -26,6 +26,9 @@ public class UIManager : MonoBehaviour
         _bestText.text = "Best: " + _highScore;
         _scoreText.text = "Current: " + 0;
         _gameOverText.gameObject.SetActive(false);
+#if MOBILE_INPUT
+        _restartText.text = "Press 'FIRE' to restart";
+#endif
         _restartText.gameObject.SetActive(false);
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
         if (!_gameManager)

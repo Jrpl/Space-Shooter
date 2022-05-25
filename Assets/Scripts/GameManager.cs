@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
         // Could probably shorten this logic, if this check fails, then its obviously co-op
         if (_gameOver)
         {
-            if (Input.GetKeyDown(KeyCode.R) && _isCoop == false)
+            if ((Input.GetKeyDown(KeyCode.R) || CrossPlatformInputManager.GetButtonDown("Fire")) && _isCoop == false)
             {
                 SceneManager.LoadScene("Single_Player");
             }
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || CrossPlatformInputManager.GetButtonDown("Pause"))
         {
             _pauseAnim.SetBool("isPaused", true);
             _pauseMenu.SetActive(true);
