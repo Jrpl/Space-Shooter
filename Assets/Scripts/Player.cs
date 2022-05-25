@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour
 {
@@ -102,8 +103,8 @@ public class Player : MonoBehaviour
 
     void Movement()
     {
-        float xInput = Input.GetAxis("Horizontal");
-        float yInput = Input.GetAxis("Vertical");
+        float xInput = CrossPlatformInputManager.GetAxis("Horizontal");
+        float yInput = CrossPlatformInputManager.GetAxis("Vertical");
         if (_speedBoostActive)
         {
             transform.Translate(new Vector3(xInput, yInput, 0) * (_speed + _speedBoost) * Time.deltaTime);
@@ -124,37 +125,37 @@ public class Player : MonoBehaviour
     {
         if (_speedBoostActive == true)
         {
-            if (Input.GetKey(KeyCode.I))
+            if (Input.GetKey(KeyCode.UpArrow))
             {
                 transform.Translate(Vector3.up * (_speed + _speedBoost) * Time.deltaTime);
             }
-            if (Input.GetKey(KeyCode.K))
+            if (Input.GetKey(KeyCode.DownArrow))
             {
                 transform.Translate(Vector3.down * (_speed + _speedBoost) * Time.deltaTime);
             }
-            if (Input.GetKey(KeyCode.J))
+            if (Input.GetKey(KeyCode.LeftArrow))
             {
                 transform.Translate(Vector3.left * (_speed + _speedBoost) * Time.deltaTime);
             }
-            if (Input.GetKey(KeyCode.L))
+            if (Input.GetKey(KeyCode.RightArrow))
             {
                 transform.Translate(Vector3.right * (_speed + _speedBoost) * Time.deltaTime);
             }
         }
         else {
-            if (Input.GetKey(KeyCode.I))
+            if (Input.GetKey(KeyCode.UpArrow))
             {
                 transform.Translate(Vector3.up * _speed * Time.deltaTime);
             }
-            if (Input.GetKey(KeyCode.K))
+            if (Input.GetKey(KeyCode.DownArrow))
             {
                 transform.Translate(Vector3.down * _speed * Time.deltaTime);
             }
-            if (Input.GetKey(KeyCode.J))
+            if (Input.GetKey(KeyCode.LeftArrow))
             {
                 transform.Translate(Vector3.left * _speed * Time.deltaTime);
             }
-            if (Input.GetKey(KeyCode.L))
+            if (Input.GetKey(KeyCode.RightArrow))
             {
                 transform.Translate(Vector3.right * _speed * Time.deltaTime);
             }
@@ -170,7 +171,7 @@ public class Player : MonoBehaviour
     // Triple Shot is bugged, prefab not lining up with ship
     void Fire()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) || CrossPlatformInputManager.GetButtonDown("Fire")) && Time.time > _canFire)
         {
             if (_tripleShotActive)
             {
@@ -189,7 +190,7 @@ public class Player : MonoBehaviour
 
     void PlayerTwoFire()
     {
-        if (Input.GetKeyDown(KeyCode.Semicolon) && Time.time > _playerTwoCanFire)
+        if ((Input.GetKeyDown(KeyCode.RightShift) || Input.GetKeyDown(KeyCode.KeypadEnter)) && Time.time > _playerTwoCanFire)
         {
             if (_tripleShotActive)
             {
